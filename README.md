@@ -7,7 +7,7 @@ Used PyTorch 1.7.0
 
 
 
-<References>
+References
 
 https://pytorch.org/get-started/locally/
 
