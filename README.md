@@ -1,6 +1,7 @@
 # RL_practice
 Reinforcement Learning Algorithm Codes for practice
 
+Used PyTorch 1.7.0
 
 [References]
 
