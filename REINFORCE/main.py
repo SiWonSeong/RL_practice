@@ -40,6 +40,7 @@ def main():
             score += r
 
         pi.train_net(gamma=gamma, device=device)
+        # pi.train_net_with_out_log(gamma=gamma, device=device) # loss에서 log항을 제거하면 학습이 잘 안된다. (Don't Use!)
 
         if (n_epi % print_interval == 0 and n_epi != 0) or (n_epi == epoch):
             print("\nn_episode: {}, avg score: {}".format(n_epi, score/print_interval))

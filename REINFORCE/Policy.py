@@ -25,7 +25,18 @@ class Policy(nn.Module):
         self.optimizer.zero_grad()
         for r, prob in self.data[::-1]:
             R = r + gamma * R
-            loss = -R * torch.log(prob.to(device))
+            loss = -R * torch.log(prob.to(device)) # prob: π_θ(s_t, a_t)
             loss.backward()
         self.optimizer.step() # 파라미터 업데이트
+        self.data = []
+
+    def train_net_with_out_log(self, gamma, device='cpu'):
+        # loss에서 log항을 제거하면 policy gradient theorem에서의 등식이 성립하지 않게 되어 학습이 잘 안된다. (Don't Use!)
+        R = 0
+        self.optimizer.zero_grad()
+        for r, prob in self.data[::-1]:
+            R = r + gamma * R
+            loss = -R * prob.to(device)  # with out log term
+            loss.backward()
+        self.optimizer.step()  # 파라미터 업데이트
         self.data = []
