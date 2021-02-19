@@ -3,9 +3,9 @@ import torch.nn.functional as F
 def train(q, q_target, memory, optimizer, batch_size, gamma, device='cpu'):
     for i in range(10):
         s, a, r, s_prime, done_mask = memory.sample(batch_size) # cpu
+
         # q, q_target, s, a, s_prime: gpu
         # memory, r, gamma: cpu
-
         s = s.to(device)
         a = a.to(device)
         s_prime = s_prime.to(device)
